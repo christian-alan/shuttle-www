@@ -84,8 +84,8 @@ export const getStaticProps = (async (context) => {
 	const type = starters[templateKey]
 		? TemplateType.Starter
 		: examples[templateKey]
-		? TemplateType.Example
-		: TemplateType.Template
+			? TemplateType.Example
+			: TemplateType.Template
 
 	if (!template) {
 		return {
@@ -138,7 +138,6 @@ export const getStaticProps = (async (context) => {
 }>
 
 export default function TemplateDetails({ template }: InferGetStaticPropsType<typeof getStaticProps>) {
-	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	return (
 		<section className='mx-auto my-[65px] w-full max-w-screen-xl px-10'>
@@ -148,45 +147,28 @@ export default function TemplateDetails({ template }: InferGetStaticPropsType<ty
 			</Link>
 
 			<div className='flex flex-col gap-[30px] md:grid md:grid-cols-3'>
-				<div className='col-span-1 flex w-full flex-col items-center justify-between rounded-3xl border border-[#434343] p-8'>
-					<div className=' flex w-full flex-col items-center'>
-						<TemplateLogo />
+				<div className=' flex w-full flex-col  rounded-3xl border border-[#434343] p-8'>
+					<div className='flex w-full flex-col items-center gap-5'>
 
-						<TemplateInit path={template?.path} template={template?.template} />
+						<div className='flex flex-col gap-2 items-center'>
+							<TemplateLogo />
+							<TemplateInit path={template?.path} template={template?.template} />
+						</div>
 
-						{isModalOpen && (
-							<div className='my-5 flex w-full flex-col justify-start'>
-								<h3 className='font-gradual text-2xl font-bold text-head'>Instructions</h3>
-								<ol className='mt-1 text-head opacity-60'>
-									<li>Step 1. Start Rust</li>
-									<li>Step 2. Copy shuttle init command with info above</li>
-
-									<li>Step 3. Login into dashboard</li>
-								</ol>
-							</div>
-						)}
-
-						<TemplateLaunch
-							path={template?.path}
-							modalOpen={isModalOpen}
-							setModalOpen={setIsModalOpen}
+						<TemplateMetadata
+							tags={template?.tags ?? []}
+							use_cases={template?.use_cases ?? []}
+							type={template?.type}
 						/>
 
-						{!isModalOpen && (
-							<TemplateMetadata
-								tags={template?.tags ?? []}
-								use_cases={template?.use_cases ?? []}
-								type={template?.type}
-							/>
-						)}
-					</div>
-
-					<div className='w-full'>
 						<TemplateButton
 							href={`https://github.com/joshua-mo-143/shuttle-examples/update-readmes/main/${template?.path}`}
 							title='Github Repo'
 						/>
 					</div>
+
+
+
 				</div>
 
 				<TemplateReadme title={template?.title} readme={template?.readme} />

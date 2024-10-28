@@ -40,19 +40,7 @@ export default function FilterMobile({
   return (
     <div className='col-span-3 block md:hidden'>
       <div className='flex items-center justify-between px-5'>
-        <div
-          className='rounded-[14px] bg-[linear-gradient(84.16deg,_#F4292933_-7.25%,_#FFD76F0B_35.45%,_#38D4E933_97%)] p-[1px]'
-          style={{
-            display: isSearchOpen ? 'none' : 'block',
-          }}
-        >
-          <button 
-            className='w-full rounded-[14px] border border-[#FFFFFF1A] bg-black px-6 py-3 text-center text-white'
-            onClick={openTypeform}
-          >
-            Contribute
-          </button>
-        </div>
+       
         <div className='flex items-center gap-2'>
           <div
             className='cursor-pointer rounded-xl bg-[#0F0F0F] p-3'
